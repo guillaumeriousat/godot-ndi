@@ -58,11 +58,8 @@ void GDNDI::_process(double delta) {
   if (time_since_last_frame < frame_interval) {
     return;
   }
-  // if (!NDIlib_send_get_no_connections(ndi_sender, 1)) {
-    // don't send anything if nothing is connected to this to avoid congesting
-    // the network.
-    // return;
-  // }
+  // this is the magic godot line that tells the engine "give me the screen texture from the
+  // nearest viewport as an image"
   Ref<Image> img = get_viewport()->get_texture()->get_image();
   auto height = img->get_height();
   auto width = img->get_width();
