@@ -9,6 +9,7 @@
 #include <Processing.NDI.Send.h>
 #include <Processing.NDI.DynamicLoad.h>
 #include <cstring>
+#include <godot_cpp/variant/string.hpp>
 
 #ifdef _WIN32
 #ifdef _WIN64
@@ -21,8 +22,9 @@
 using namespace godot;
 
 void GDNDI::_bind_methods() {
-  ClassDB::bind_method(D_METHOD("set_framerate"), &GDNDI::set_framerate);
-  ClassDB::bind_method(D_METHOD("get_framerate"), &GDNDI::get_framerate);
+  ClassDB::bind_method(D_METHOD("set_stream_name"), &GDNDI::set_stream_name);
+  ClassDB::bind_method(D_METHOD("get_stream_name"), &GDNDI::get_stream_name);
+	ADD_PROPERTY(PropertyInfo(Variant::STRING, "stream name"), "set_stream_name", "get_stream_name");
 }
 
 GDNDI::GDNDI() {
@@ -34,7 +36,7 @@ GDNDI::GDNDI() {
   }
   NDIlib_send_create_t NDI_send_create_desc;
 
-  NDI_send_create_desc.p_ndi_name = "GODOT NDI PLZ";
+  NDI_send_create_desc.p_ndi_name = stream_name.utf8().get_data();
   ndi_sender = NDIlib_send_create(&NDI_send_create_desc);
   if (!ndi_sender) {
     return;
@@ -45,8 +47,29 @@ GDNDI::GDNDI() {
 
 GDNDI::~GDNDI() {
   NDIlib_send_destroy(ndi_sender);
-  // NDIlib_destroy();
-  // NDIlib_destroy();
+  NDIlib_destroy();
+}
+
+// apparently, the only(?) way to change an ndi stream's name is by destroying it
+// and recreating it.
+void GDNDI::set_stream_name(const String name) {
+  stream_name = name;
+  if (Engine::get_singleton()->is_editor_hint()) {
+    return;
+  }
+  // send an empty frame to ensure the sender does not own memory
+  NDIlib_send_send_video_async_v2(ndi_sender, NULL);
+  // violently destroy and recreate the sender
+  UtilityFunctions::print("wat");
+  UtilityFunctions::print(name);
+  NDIlib_send_destroy(ndi_sender);
+  NDIlib_send_create_t NDI_send_create_desc;
+  NDI_send_create_desc.p_ndi_name = name.utf8().get_data();
+  ndi_sender = NDIlib_send_create(&NDI_send_create_desc);
+}
+
+String GDNDI::get_stream_name() const {
+  return stream_name;
 }
 
 void GDNDI::_process(double delta) {
@@ -79,11 +102,3 @@ void GDNDI::_process(double delta) {
   this->frame_index = !this->frame_index;
 }
 
-void GDNDI::set_framerate(double framerate) {
-  this->framerate = framerate;
-  this->frame_interval = 1/framerate;
-}
-
-double GDNDI::get_framerate() const {
-  return this->framerate;
-}

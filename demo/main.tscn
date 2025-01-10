@@ -19,6 +19,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52983, 2.62021)
 material = SubResource("StandardMaterial3D_36bhr")
 
 [node name="GDNDI" type="GDNDI" parent="WorldEnvironment"]
+"stream name" = "my godot ndi stream"
 
 [node name="Camera3D" type="Camera3D" parent="WorldEnvironment"]
-transform = Transform3D(-0.997522, 0, 0.0703484, 0, 1, 0, -0.0703484, 0, -0.997522, 0, 1.5846, -2.74785)
+transform = Transform3D(-0.982926, -0.128204, -0.131986, -0.149711, 0.974249, 0.1686, 0.106972, 0.185481, -0.976808, -0.0995895, 1.77999, -2.43756)
