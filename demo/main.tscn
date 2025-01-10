@@ -1,3 +1,24 @@
-[gd_scene format=3 uid="uid://cj0ps1egqof27"]
+[gd_scene load_steps=3 format=3 uid="uid://cj0ps1egqof27"]
+
+[sub_resource type="Environment" id="Environment_y88rh"]
+background_energy_multiplier = 2.43
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_36bhr"]
+clearcoat_enabled = true
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.61
+subsurf_scatter_skin_mode = true
 
 [node name="Main" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_y88rh")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52983, 2.62021)
+material = SubResource("StandardMaterial3D_36bhr")
+
+[node name="GDNDI" type="GDNDI" parent="WorldEnvironment"]
+
+[node name="Camera3D" type="Camera3D" parent="WorldEnvironment"]
+transform = Transform3D(-0.997522, 0, 0.0703484, 0, 1, 0, -0.0703484, 0, -0.997522, 0, 1.5846, -2.74785)
