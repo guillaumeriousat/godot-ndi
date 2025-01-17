@@ -7,6 +7,6 @@ NDI® is this https://ndi.video/
 
 This works in linux 86/64. Just make a GDNDI node in your scene tree, near the viewport you want to expose and you should get an ndi feed.
 
-Right now it will be called `GODOT NDI PLZ` and there's nothing you can do about it. The resolution of the feed will change as your game screen resolution changes.
+You can rename the feed with the `stream name` property. The resolution of the feed will change as your game screen resolution changes.
 
 As long as there is less than 6144*6144 pixels total in your game image, it should work just fine.
