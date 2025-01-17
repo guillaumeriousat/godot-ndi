@@ -22,4 +22,4 @@ material = SubResource("StandardMaterial3D_36bhr")
 "stream name" = "my godot ndi stream"
 
 [node name="Camera3D" type="Camera3D" parent="WorldEnvironment"]
-transform = Transform3D(-0.978078, -0.170892, 0.118995, -0.149711, 0.974249, 0.1686, -0.144743, 0.147089, -0.978476, -0.0995895, -0.199134, -2.43756)
+transform = Transform3D(-0.978078, -0.170892, 0.118995, -0.149711, 0.974249, 0.1686, -0.144743, 0.147089, -0.978476, -0.0995895, 1.44568, -2.43756)
