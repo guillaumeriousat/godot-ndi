@@ -47,3 +47,9 @@ linux.debug.x86_64 = {
 linux.release.x86_64 = {
   "res://bin/linux/libndi6.so": ""
 }
+windows.debug.x86_64 = {
+  "res://bin/windows/libndi.dll": ""
+}
+windows.release.x86_64 = {
+  "res://bin/windows/libndi.dll": ""
+}

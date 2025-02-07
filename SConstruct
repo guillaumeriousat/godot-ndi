@@ -53,7 +53,7 @@ env = SConscript("godot-cpp/SConstruct", {"env": env, "customs": customs})
 env.Append(CPPPATH=["src/", "include/"])
 sources = Glob("src/*.cpp")
 
-env.Append(LIBPATH=["bin/linux"])
+env.Append(LIBPATH=["bin/linux", "bin/windows"])
 libs = ['libndi']
 env.Append(LIBS=libs)
 
