@@ -1,4 +1,14 @@
 # godot-ndi
+
+While I was working (very slowly) on this, someone else had the time to start and mostly finish something that is more polished and cross-platform.
+
+You can find their project here : https://github.com/unvermuthet/godot-ndi
+
+I recommend that you use that instead. I'll be keeping this here as archive and example code.
+
+
+
+
 This implements a node that will send the viewport nearest to it as an NDI® feed.
 
 NDI® is this https://ndi.video/
